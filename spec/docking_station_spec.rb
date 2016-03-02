@@ -16,7 +16,7 @@ describe DockingStation do
     end
 
     it "raise an error when the station is empty" do
-      expect { subject.release_bike }.to raise_error("The stations is EMPTY!") if subject.bike == nil
+      expect { subject.release_bike }.to raise_error("The stations is EMPTY!") if subject.bike_list.count == 0
     end
 
   end
@@ -30,7 +30,8 @@ describe DockingStation do
     end
 
     it "raises an error when the station is full" do
-      expect { subject.dock_bike bike }.to raise_error("The station is FULL!") unless subject.bike == nil
+      bike = Bike.new
+      expect { subject.dock_bike bike }.to raise_error("The station is FULL!") if subject.bike_list.count == subject.capacity
     end
 
   end
@@ -40,7 +41,7 @@ describe DockingStation do
     it "returns a docked bike" do
       bike = Bike.new
       subject.dock_bike bike
-      expect(subject.bike).to eq(bike)
+      expect(subject.bike).to eq(subject.bike_list)
     end
 
 
