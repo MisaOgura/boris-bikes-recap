@@ -11,8 +11,4 @@ class DockingStation
     @bike = bike
   end
 
-  def show_bike
-    @bike
-  end
-
 end
